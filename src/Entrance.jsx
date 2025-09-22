@@ -3,16 +3,16 @@ import { useAuth } from "./AuthContext";
 
 /** Users can enter their name to receive a token from the API. */
 export default function Entrance() {
-  // TODO: call signup when form is submitted
+  // TODO: call signup when form is submitted ✔️
   const { signup } = useAuth();
   const [name, setName] = useState("");
 
-  const hangleNameChange = (event) => {
+  const handleNameChange = (event) => {
     console.log(event.target.value);
     setName(event.target.value);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (name.trim() === "") {
@@ -20,7 +20,7 @@ export default function Entrance() {
       return;
     }
 
-    signup(name);
+    await signup(name);
   }
 
   return (
@@ -42,7 +42,7 @@ export default function Entrance() {
           <input 
             name="name" 
             value={name} 
-            onChange={hangleNameChange} 
+            onChange={handleNameChange} 
           />
         </label>
         <button type="submit">Respond</button>
